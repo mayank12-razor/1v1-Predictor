@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1v1 Predictor</title>
+<style>
+ 
+ body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f0f8ff;
+  color: #333;
+  margin: 20px;
+  animation: fadeInBody 1.5s ease-in-out, shakeBody 1s ease-in-out infinite alternate;
+}
+
+.user-input, .container {
+  margin-bottom: 20px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.8s ease-in-out, popIn 0.5s ease-in-out;
+}
+
+label {
+  display: inline-block;
+  width: 150px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #FF6347;
+}
+
+input, select {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  width: calc(100% - 170px);
+  font-size: 16px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  background-color: #fafafa;
+}
+
+input:focus, select:focus {
+  border-color: #FF6347;
+  box-shadow: 0 0 10px rgba(255, 99, 71, 0.7);
+  transform: scale(1.05);
+}
+
+button {
+  margin-top: 20px;
+  padding: 15px 30px;
+  background-color: #FF6347;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease, rotate 0.5s ease;
+  animation: pulse 2s infinite, bounce 2s infinite alternate;
+}
+
+button:hover {
+  background-color: #ff5733;
+  transform: scale(1.1) rotate(10deg);
+}
+
+#results {
+  margin-top: 30px;
+  display: none;
+}
+
+#userResults h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #4CAF50;
+  animation: fadeInText 1s ease-in-out;
+}
+
+#userResults p {
+  font-size: 18px;
+  color: #333;
+  animation: fadeInText 1.2s ease-in-out;
+}
+
+@keyframes fadeInBody {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+@keyframes fadeInText {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes shakeBody {
+  0% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+  100% { transform: rotate(0); }
+}
+
+@keyframes bounce {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="user-input">
+  <label for="name">Name:</label>
+  <input type="text" id="name" placeholder="Enter your name"><br>
+
+  <label for="age">Age:</label>
+  <input type="number" id="age" placeholder="Enter your age"><br>
+
+  <label for="gender">Gender:</label>
+  <select id="gender">
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+    <option value="other">Other</option>
+  </select><br>
+
+  <label for="idType">ID TYPE:</label>
+  <select id="idType">
+    <option value="College ID">College ID</option>
+    <option value="School ID">School ID</option>
+    <option value="Aadhar Card">Aadhar Card</option>
+    <option value="PAN Card">PAN Card</option>
+    <option value="Voter ID">Voter ID</option>
+  </select><br>
+
+  <label for="idNumber">ID Number:</label>
+  <input type="text" id="idNumber" placeholder="Enter your ID number"><br>
+
+  <label for="height">Height (cm):</label>
+  <input type="number" id="height" placeholder="Enter your height"><br>
+
+  <label for="weight">Weight (kg):</label>
+  <input type="number" id="weight" placeholder="Enter your weight"><br>
+
+  <label for="bloodGroup">Blood Group:</label>
+  <select id="bloodGroup">
+    <option value="A+">A+</option>
+    <option value="A-">A-</option>
+    <option value="B+">B+</option>
+    <option value="B-">B-</option>
+    <option value="O+">O+</option>
+    <option value="O-">O-</option>
+    <option value="AB+">AB+</option>
+    <option value="AB-">AB-</option>
+  </select><br>
+
+  <label for="logistics">Medical Services:</label>
+  <select id="logistics">
+    <option value="Disease Predictor">Disease Predictor</option>
+    <option value="https://medulance.com/">Emergency Ambulance</option>
+    <option value="https://www.wordlab.com/drug-o-matic-name-generator/">Generic Name Generator</option>
+    <option value="https://health.policybazaar.com/members/1?offerid=21&r=true&pb_source=google&pb_medium=cpc&pb_term=Health+insurance&pb_campaign=Core_Desktop00Health_Insurance_networkg&loc_interest_ms=&loc_physical_ms=9183921&gad_source=1&gclid=CjwKCAjwouexBhAuEiwAtW_Zx3FSJBnq_PR3BdhD3kCFr9q3x5yGt7gLNlWhUHs3EIc09I-wW003yhoCAxMQAvD_BwE">Health Insurance</option>
+    <option value="https://nha.gov.in/PM-JAY">Govt Medical Schemes</option>
+    <option value="https://pharmeasy.in/">Online Medical Shopping</option>
+  </select><br>
+
+  <label for="HeartRate">Heart Rate:</label>
+  <input type="number" id="HeartRate" placeholder="Enter your HR"><br>
+</div>
+
+<div class="container">
+  <h1>Predictions on Body Temperature</h1>
+  <div>
+    <p>Enter your temperature:</p>
+    <input type="number" id="temperature" placeholder="TEMP in Fahrenheit" required>
+  </div>
+  <div id="prediction" style="display: none;">
+    <p>(TEMP) Predicted condition: <span id="predicted"></span></p>
+  </div>
+</div>
+
+<div class="container">
+  <h1>Predictions On Blood Pressure</h1>
+  <div>
+    <p>Enter your Higher Blood Pressure:</p>
+    <input type="number" id="HbloodPressure" placeholder="BP in mmHg" required>
+    <p>Enter your Lower Blood Pressure:</p>
+    <input type="number" id="LbloodPressure" placeholder="BP in mmHg" required>
+  </div>
+  <div id="Prediction" style="display: none;">
+    <p>(BP) Predicted condition: <span id="Predicted"></span></p>
+  </div>
+</div>
+
+<div class="container">
+  <h1>Predictions On Blood Sugar</h1>
+  <div>
+    <p>Enter your Blood Sugar Level:</p>
+    <input type="number" id="bloodSugar" placeholder="in mg/dL" required>
+  </div>
+  <div id="PredictioN" style="display: none;">
+    <p>(Blood Sugar) Predicted condition: <span id="PredicteD"></span></p>
+  </div>
+</div>
+
+<button id="start-btn" onclick="startProcess()">Start</button>
+
+<div id="results">
+  <div id="userResults"></div>
+</div>
+
+<script src="main.js">
+  
+</script>
+
+</body>
+</html>
